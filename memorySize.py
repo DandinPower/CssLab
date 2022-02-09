@@ -34,11 +34,9 @@ def CheckTransferSize():
     df = pd.read_csv("./cola_public/raw/in_domain_train.tsv", delimiter='\t', header=None, names=['sentence_source', 'label', 'label_notes', 'sentence'])
     sentences = df.sentence.values
 
-def CheckTensorSize():
-    #讀取資料集
-    df = pd.read_csv("./cola_public/raw/in_domain_train.tsv", delimiter='\t', header=None, names=['sentence_source', 'label', 'label_notes', 'sentence'])
+def CheckTensorSize(df):
     sentences = df.sentence.values 
-    labels = df.label.values
+    #labels = df.label.values
     #讀取tokenizer
     print('loading BertTokenizer...')
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased',do_lower_case = True)
@@ -77,8 +75,13 @@ def CheckTensorSize():
 
 def main():
     #strVsInt()
-    #CheckTensorSize()
-    CheckTransferSize()
+    #讀取資料集
+    #df = pd.read_csv("./cola_public/raw/in_domain_train.tsv", delimiter='\t', header=None, names=['sentence_source', 'label', 'label_notes', 'sentence'])
+    #CheckTensorSize(df)
+
+    df = pd.read_csv('fake.csv')
+    CheckTensorSize(df)
+    #CheckTransferSize()
 
 if __name__ == "__main__":
     main()
