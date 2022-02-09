@@ -29,8 +29,12 @@ def strVsInt():
     print(sys.getsizeof(x))
     print(sys.getsizeof(y))
 
+def CheckTransferSize():
+    #讀取資料集
+    df = pd.read_csv("./cola_public/raw/in_domain_train.tsv", delimiter='\t', header=None, names=['sentence_source', 'label', 'label_notes', 'sentence'])
+    sentences = df.sentence.values
 
-def CheckSize():
+def CheckTensorSize():
     #讀取資料集
     df = pd.read_csv("./cola_public/raw/in_domain_train.tsv", delimiter='\t', header=None, names=['sentence_source', 'label', 'label_notes', 'sentence'])
     sentences = df.sentence.values 
@@ -64,6 +68,7 @@ def CheckSize():
 
     path = './cola_public/raw/in_domain_train.tsv'
     size = os.path.getsize(path)
+    print(f'dataframe: {sys.getsizeof(sentences)}bytes')
     print(f'file: {size}bytes, {size/1024}kb, {size/(1024*1024)}mb')
     print(f'original: {original_size}bytes, {original_size/1024}kb, {original_size/(1024*1024)}mb')
     print(f'tensor: {tensor_size}bytes, {tensor_size/1024}kb, {tensor_size/(1024*1024)}mb')
@@ -71,8 +76,9 @@ def CheckSize():
     #print(f'memory decrease percentage: {100-(tensor_size*100/original_size)}%')
 
 def main():
-    strVsInt()
-    CheckSize()
+    #strVsInt()
+    #CheckTensorSize()
+    CheckTransferSize()
 
 if __name__ == "__main__":
     main()
