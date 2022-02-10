@@ -94,7 +94,7 @@ def main():
     df = pd.read_csv('fake_1000mb.csv')
     print(df.info(memory_usage='deep'))
     CheckTensorSize(df)
-    #CheckTransferSize()
+    #CheckTransferSize()'''
 
 if __name__ == "__main__":
     main()

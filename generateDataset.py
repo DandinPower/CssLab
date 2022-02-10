@@ -6,6 +6,7 @@ import sys
 import os
 import numpy as np
 import random 
+
 def generateSentence(vocab,a,b):
     length = random.randint(a,b)
     sentence = ''
@@ -18,7 +19,7 @@ def generateSentence(vocab,a,b):
 def generateDataset(vocab,nums):
     dataset = []
     for i in range(nums):
-        dataset.append(generateSentence(vocab, 20,40))
+        dataset.append(generateSentence(vocab, 10,50))
     return dataset
 
 def getVocab():
