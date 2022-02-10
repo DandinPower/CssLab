@@ -52,9 +52,9 @@ def CheckTensorSize(df):
         newSent = torch.cat((input_ids[0],pading),0)
         newSent = newSent.reshape([1,-1])
         tensor_size += sys.getsizeof(newSent)
-        #sent2 = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(sent))
-        #npSent = np.array(sent2)
-        '''
+        sent2 = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(sent))
+        npSent = np.array(sent2)
+        
         if(tensor_size == 0):
             print(sent,type(sent))
             print(sys.getsizeof(sent))
@@ -64,7 +64,7 @@ def CheckTensorSize(df):
             print(sys.getsizeof(npSent))
             print(getSizeFromNumpyElement(npSent))
             print(newSent,type(newSent))
-            print(sys.getsizeof(newSent))'''
+            print(sys.getsizeof(newSent))
         
 
     path = './cola_public/raw/in_domain_train.tsv'
