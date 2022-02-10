@@ -45,10 +45,10 @@ def main():
     GenerateCsv('fake_1mb.csv', dataset)
     dataset = generateDataset(vocab, 18328)
     GenerateCsv('fake_10mb.csv', dataset)
-    #dataset = generateDataset(vocab, 183284)
-    #GenerateCsv('fake_100mb.csv', dataset)
-    #dataset = generateDataset(vocab, 1832842)
-    #GenerateCsv('fake_1000mb.csv', dataset)
+    dataset = generateDataset(vocab, 183284)
+    GenerateCsv('fake_100mb.csv', dataset)
+    dataset = generateDataset(vocab, 1832842)
+    GenerateCsv('fake_1000mb.csv', dataset)
 
     
 main()
