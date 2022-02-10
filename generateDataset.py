@@ -40,8 +40,14 @@ def GenerateCsv(path,sentence):
 
 def main():
     vocab = getVocab()
-    dataset = generateDataset(vocab, 1000000)
-    GenerateCsv('fake.csv', dataset)
+    dataset = generateDataset(vocab, 4545)
+    GenerateCsv('fake_1mb.csv', dataset)
+    dataset = generateDataset(vocab, 45454)
+    GenerateCsv('fake_10mb.csv', dataset)
+    dataset = generateDataset(vocab, 454545)
+    GenerateCsv('fake_100mb.csv', dataset)
+    dataset = generateDataset(vocab, 4545454)
+    GenerateCsv('fake_1000mb.csv', dataset)
 
     
 main()

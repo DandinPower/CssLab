@@ -33,6 +33,7 @@ def CheckTransferSize():
     #讀取資料集
     df = pd.read_csv("./cola_public/raw/in_domain_train.tsv", delimiter='\t', header=None, names=['sentence_source', 'label', 'label_notes', 'sentence'])
     sentences = df.sentence.values
+    print(df.info(memory_usage='deep'))
 
 def CheckTensorSize(df):
     sentences = df.sentence.values 
@@ -50,8 +51,10 @@ def CheckTensorSize(df):
         pading = torch.tensor([tokenizer.pad_token_id] * (max_length - input_ids[0].size()[0]))
         newSent = torch.cat((input_ids[0],pading),0)
         newSent = newSent.reshape([1,-1])
-        sent2 = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(sent))
-        npSent = np.array(sent2)
+        tensor_size += sys.getsizeof(newSent)
+        #sent2 = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(sent))
+        #npSent = np.array(sent2)
+        '''
         if(tensor_size == 0):
             print(sent,type(sent))
             print(sys.getsizeof(sent))
@@ -61,8 +64,8 @@ def CheckTensorSize(df):
             print(sys.getsizeof(npSent))
             print(getSizeFromNumpyElement(npSent))
             print(newSent,type(newSent))
-            print(sys.getsizeof(newSent))
-        tensor_size += sys.getsizeof(newSent)
+            print(sys.getsizeof(newSent))'''
+        
 
     path = './cola_public/raw/in_domain_train.tsv'
     size = os.path.getsize(path)
@@ -79,7 +82,17 @@ def main():
     #df = pd.read_csv("./cola_public/raw/in_domain_train.tsv", delimiter='\t', header=None, names=['sentence_source', 'label', 'label_notes', 'sentence'])
     #CheckTensorSize(df)
 
-    df = pd.read_csv('fake.csv')
+    df = pd.read_csv('fake_1mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df)
+    df = pd.read_csv('fake_10mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df)
+    df = pd.read_csv('fake_100mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df)
+    df = pd.read_csv('fake_1000mb.csv')
+    print(df.info(memory_usage='deep'))
     CheckTensorSize(df)
     #CheckTransferSize()
 
