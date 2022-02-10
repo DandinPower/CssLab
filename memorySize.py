@@ -45,6 +45,7 @@ def CheckTensorSize(df):
     original_size = 0
     tensor_size = 0
     max_length = 128
+    print(f'rows nums : {len(sentences)}')
     for sent in sentences:
         original_size += sys.getsizeof(sent)
         input_ids = getTensorFromString(sent, max_length, tokenizer)
