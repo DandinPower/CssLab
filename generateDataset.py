@@ -19,7 +19,7 @@ def generateSentence(vocab,a,b):
 def generateDataset(vocab,nums):
     dataset = []
     for i in range(nums):
-        dataset.append(generateSentence(vocab, 10,50))
+        dataset.append(generateSentence(vocab, 50,100))
     return dataset
 
 def getVocab():
@@ -41,14 +41,14 @@ def GenerateCsv(path,sentence):
 
 def main():
     vocab = getVocab()
-    dataset = generateDataset(vocab, 4545)
+    dataset = generateDataset(vocab, 1832)
     GenerateCsv('fake_1mb.csv', dataset)
-    dataset = generateDataset(vocab, 45454)
+    dataset = generateDataset(vocab, 18328)
     GenerateCsv('fake_10mb.csv', dataset)
-    dataset = generateDataset(vocab, 454545)
-    GenerateCsv('fake_100mb.csv', dataset)
-    dataset = generateDataset(vocab, 4545454)
-    GenerateCsv('fake_1000mb.csv', dataset)
+    #dataset = generateDataset(vocab, 183284)
+    #GenerateCsv('fake_100mb.csv', dataset)
+    #dataset = generateDataset(vocab, 1832842)
+    #GenerateCsv('fake_1000mb.csv', dataset)
 
     
 main()
