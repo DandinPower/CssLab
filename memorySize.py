@@ -44,7 +44,7 @@ def CheckTensorSize(df):
     #計算memorysize
     original_size = 0
     tensor_size = 0
-    max_length = 64
+    max_length = 128
     for sent in sentences:
         original_size += sys.getsizeof(sent)
         input_ids = getTensorFromString(sent, max_length, tokenizer)
