@@ -35,7 +35,7 @@ def CheckTransferSize():
     sentences = df.sentence.values
     print(df.info(memory_usage='deep'))
 
-def CheckTensorSize(df):
+def CheckTensorSize(df,path,max):
     sentences = df.sentence.values 
     #labels = df.label.values
     #讀取tokenizer
@@ -44,7 +44,7 @@ def CheckTensorSize(df):
     #計算memorysize
     original_size = 0
     tensor_size = 0
-    max_length = 128
+    max_length = max
     print(f'rows nums : {len(sentences)}')
     for sent in sentences:
         original_size += sys.getsizeof(sent)
@@ -67,8 +67,6 @@ def CheckTensorSize(df):
             print(newSent,type(newSent))
             print(sys.getsizeof(newSent))
         
-
-    path = './cola_public/raw/in_domain_train.tsv'
     size = os.path.getsize(path)
     print(f'dataframe: {sys.getsizeof(sentences)}bytes')
     print(f'file: {size}bytes, {size/1024}kb, {size/(1024*1024)}mb')
@@ -83,18 +81,54 @@ def main():
     #df = pd.read_csv("./cola_public/raw/in_domain_train.tsv", delimiter='\t', header=None, names=['sentence_source', 'label', 'label_notes', 'sentence'])
     #CheckTensorSize(df)
 
-    df = pd.read_csv('fake_1mb.csv')
+    df = pd.read_csv('fake_64_1mb.csv')
     print(df.info(memory_usage='deep'))
-    CheckTensorSize(df)
-    df = pd.read_csv('fake_10mb.csv')
+    CheckTensorSize(df,'fake_64_1mb.csv',64)
+
+    df = pd.read_csv('fake_64_10mb.csv')
     print(df.info(memory_usage='deep'))
-    CheckTensorSize(df)
-    df = pd.read_csv('fake_100mb.csv')
+    CheckTensorSize(df,'fake_64_10mb.csv',64)
+
+    df = pd.read_csv('fake_64_100mb.csv')
     print(df.info(memory_usage='deep'))
-    CheckTensorSize(df)
-    df = pd.read_csv('fake_1000mb.csv')
+    CheckTensorSize(df,'fake_64_100mb.csv',64)
+
+    df = pd.read_csv('fake_128_1mb.csv')
     print(df.info(memory_usage='deep'))
-    CheckTensorSize(df)
+    CheckTensorSize(df,'fake_128_1mb.csv',128)
+
+    df = pd.read_csv('fake_128_10mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df,'fake_128_10mb.csv',128)
+
+    df = pd.read_csv('fake_128_100mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df,'fake_128_100mb.csv',128)
+
+    df = pd.read_csv('fake_256_1mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df,'fake_256_1mb.csv',256)
+
+    df = pd.read_csv('fake_256_10mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df,'fake_256_1mb.csv',256)
+
+    df = pd.read_csv('fake_256_100mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df,'fake_256_1mb.csv',256)
+
+    df = pd.read_csv('fake_512_1mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df,'fake_512_1mb.csv',512)
+
+    df = pd.read_csv('fake_512_10mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df,'fake_512_1mb.csv',512)
+
+    df = pd.read_csv('fake_512_100mb.csv')
+    print(df.info(memory_usage='deep'))
+    CheckTensorSize(df,'fake_512_1mb.csv',512)
+    
     #CheckTransferSize()'''
 
 if __name__ == "__main__":
