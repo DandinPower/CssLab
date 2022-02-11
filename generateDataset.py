@@ -12,17 +12,22 @@ params_2 = [50,100,230,500]
 def generateSentence(vocab,a,b):
     length = random.randint(a,b)
     sentence = ''
+    token = ''
     for i in range(length):
         index = random.randint(1997,29611) 
         sentence += vocab[index]
         sentence += ' '
-    return sentence
+        token += str(index)
+        token += ''
+    return sentence,token
 
 def generateDataset(vocab,nums,a):
     dataset = []
+    tokenDataset = []
     for i in range(nums):
-        dataset.append(generateSentence(vocab, params_1[a],params_2[a]))
-    return dataset
+        dataset.append(generateSentence(vocab, params_1[a],params_2[a])[0])
+        tokenDataset.append(generateSentence(vocab, params_1[a],params_2[a])[1])
+    return dataset,tokenDataset
 
 def getVocab():
     f = open('vocab.txt',encoding='utf-8')
@@ -43,12 +48,16 @@ def GenerateCsv(path,sentence):
 
 def main():
     vocab = getVocab()
-    dataset = generateDataset(vocab, 4545,0)
+    dataset,tokenDataset = generateDataset(vocab, 4545,0)
     GenerateCsv('fake_64_1mb.csv', dataset)
-    dataset = generateDataset(vocab, 45454,0)
+    GenerateCsv('fake_token_64_1mb.csv', tokenDataset)
+    dataset,tokenDataset = generateDataset(vocab, 45454,0)
     GenerateCsv('fake_64_10mb.csv', dataset)
-    dataset = generateDataset(vocab, 454545,0)
+    GenerateCsv('fake_token_64_10mb.csv', tokenDataset)
+    '''
+    dataset,tokenDataset = generateDataset(vocab, 454545,0)
     GenerateCsv('fake_64_100mb.csv', dataset)
+    GenerateCsv('fake_token_64_100mb.csv', tokenDataset)
     dataset = generateDataset(vocab, 1832,1)
     GenerateCsv('fake_128_1mb.csv', dataset)
     dataset = generateDataset(vocab, 18328,1)
@@ -66,6 +75,6 @@ def main():
     dataset = generateDataset(vocab, 2895,3)
     GenerateCsv('fake_512_10mb.csv', dataset)
     dataset = generateDataset(vocab, 28954,3)
-    GenerateCsv('fake_512_100mb.csv', dataset)
+    GenerateCsv('fake_512_100mb.csv', dataset)'''
     
 main()
