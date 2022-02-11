@@ -79,8 +79,100 @@ def CheckFileSize(path):
 
 if __name__ == '__main__':
     
+    textSize = CheckFileSize('fake_64_1mb.csv')
+    tokenSize = CheckFileSize('fake_token_64_1mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 64 size: 1mb\n')
+
+    textSize = CheckFileSize('fake_128_1mb.csv')
+    tokenSize = CheckFileSize('fake_token_128_1mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 128 size: 1mb\n')
+
+    textSize = CheckFileSize('fake_256_1mb.csv')
+    tokenSize = CheckFileSize('fake_token_256_1mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 256 size: 1mb\n')
+
+    textSize = CheckFileSize('fake_512_1mb.csv')
+    tokenSize = CheckFileSize('fake_token_512_1mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 512 size: 1mb\n')
+
+
     textSize = CheckFileSize('fake_64_10mb.csv')
     tokenSize = CheckFileSize('fake_token_64_10mb.csv')
     different = (textSize - tokenSize) * 100 / textSize
     print(f'decrease percentage: {different}%')
+    print(f'batch: 64 size: 10mb\n')
+
+    textSize = CheckFileSize('fake_128_10mb.csv')
+    tokenSize = CheckFileSize('fake_token_128_10mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 128 size: 10mb\n')
+
+    textSize = CheckFileSize('fake_256_10mb.csv')
+    tokenSize = CheckFileSize('fake_token_256_10mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 256 size: 10mb\n')
+
+    textSize = CheckFileSize('fake_512_10mb.csv')
+    tokenSize = CheckFileSize('fake_token_512_10mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 512 size: 10mb\n')
+
+    textSize = CheckFileSize('fake_64_100mb.csv')
+    tokenSize = CheckFileSize('fake_token_64_100mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 64 size: 100mb\n')
+
+    textSize = CheckFileSize('fake_128_100mb.csv')
+    tokenSize = CheckFileSize('fake_token_128_100mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 128 size: 100mb\n')
+
+    textSize = CheckFileSize('fake_256_100mb.csv')
+    tokenSize = CheckFileSize('fake_token_256_100mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 256 size: 100mb\n')
+
+    textSize = CheckFileSize('fake_512_100mb.csv')
+    tokenSize = CheckFileSize('fake_token_512_100mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 512 size: 100mb\n')
+
+    textSize = CheckFileSize('fake_64_1000mb.csv')
+    tokenSize = CheckFileSize('fake_token_64_1000mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 64 size: 1000mb\n')
+
+    textSize = CheckFileSize('fake_128_1000mb.csv')
+    tokenSize = CheckFileSize('fake_token_128_1000mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 128 size: 1000mb\n')
+
+    textSize = CheckFileSize('fake_256_1000mb.csv')
+    tokenSize = CheckFileSize('fake_token_256_1000mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 256 size: 1000mb\n')
+
+    textSize = CheckFileSize('fake_512_1000mb.csv')
+    tokenSize = CheckFileSize('fake_token_512_1000mb.csv')
+    different = (textSize - tokenSize) * 100 / textSize
+    print(f'decrease percentage: {different}%')
+    print(f'batch: 512 size: 1000mb\n')
     
