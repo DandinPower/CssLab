@@ -241,14 +241,14 @@ for epoch_i in range(0, epochs):
             print('  Batch {:>5,}  of  {:>5,}.    Elapsed: {:}.'.format(step, len(train_dataloader), elapsed))
 
         # 准备输入数据，并将其拷贝到 gpu 中
-        #device = 'cuda'
-        #b_input_ids = batch[0].to(device)
-        #b_input_mask = batch[1].to(device)
-        #b_labels = batch[2].to(device)
+        device = 'cuda'
+        b_input_ids = batch[0].to(device)
+        b_input_mask = batch[1].to(device)
+        b_labels = batch[2].to(device)
         
-        b_input_ids = batch[0]
-        b_input_mask = batch[1]
-        b_labels = batch[2]
+        #b_input_ids = batch[0]
+        #b_input_mask = batch[1]
+        #b_labels = batch[2]
 
         # 每次计算梯度前，都需要将梯度清 0，因为 pytorch 的梯度是累加的
         model.zero_grad()        
