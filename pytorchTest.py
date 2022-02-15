@@ -68,6 +68,7 @@ def CheckTensorSize():
 
 def CheckFileSize(path):
     p = psutil.Process()
+    print(p.io_counters())
     prev_read = p.io_counters()[2]
     with open(path,'r',encoding='utf-8') as file:
         data = file.readlines()

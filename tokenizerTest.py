@@ -209,7 +209,7 @@ training_stats = []
 total_t0 = time.time()
 
 # 在 gpu 中运行该模型
-#model.cuda()
+model.cuda()
 
 for epoch_i in range(0, epochs):
     
