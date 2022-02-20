@@ -16,7 +16,7 @@ labels = df.label.values
 
 from transformers import BertTokenizer
 print('loading BertTokenizer...')
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased',do_lower_case = True)
+tokenizer = BertTokenizer.from_pretrained('bert-base-cased',do_lower_case = True)
 # 输出原始句子
 print('Original: ', sentences[0])
 
