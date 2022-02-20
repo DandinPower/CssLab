@@ -18,7 +18,7 @@ from transformers import BertTokenizer
 print('loading BertTokenizer...')
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased',do_lower_case = True)
 # 输出原始句子
-print(' Original: ', sentences[0])
+print('Original: ', sentences[0])
 
 # 将分词后的内容输出
 print('Tokenized: ', tokenizer.tokenize(sentences[0]))
