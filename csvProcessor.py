@@ -19,6 +19,12 @@ def GetCola():
     colaSentence = ReadCsvText(colaPath, colaNames, 3)
     colaSentence.to_csv(colaSentencePath, index = False)
 
+#讀取cSv 
+def ReadCsvToList(path):
+    with open(path, encoding='utf-8') as csvfile:
+        data = csvfile.readlines()
+        return data[1:]
+
 #主程式
 def main():
     GetCola()
