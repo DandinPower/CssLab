@@ -12,6 +12,7 @@ def _read_wiki(data_dir):
         lines = f.readlines()
     # 大写字母转换为小写字母
     paragraphs = [line.strip().lower().split(' . ')for line in lines if len(line.split('.')) >= 2]
+    print(paragraphs[0])
     #print(paragraphs)
     random.shuffle(paragraphs)
     return paragraphs
@@ -169,6 +170,15 @@ def load_data_wiki(datapath,batch_size, max_len):
 
 def main():
     batch_size, max_len = 512, 64
+    train_iter, vocab = load_data_wiki('./data/wikitext-2/wiki.train.tokens',batch_size, max_len)
+    print(train_iter)
+    for (tokens_X, segments_X, valid_lens_x, pred_positions_X, mlm_weights_X,
+        mlm_Y, nsp_y) in train_iter:
+        print(tokens_X.shape, segments_X.shape, valid_lens_x.shape,
+            pred_positions_X.shape, mlm_weights_X.shape, mlm_Y.shape,
+            nsp_y.shape)
+        break
+    print(len(vocab))
     train_iter, vocab = load_data_wiki('./data/wikidata/data.txt',batch_size, max_len)
     print(train_iter)
     for (tokens_X, segments_X, valid_lens_x, pred_positions_X, mlm_weights_X,
