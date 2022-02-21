@@ -7,7 +7,7 @@ from d2l import torch as d2l
 def _read_wiki(data_dir):
     #file_name = os.path.join(data_dir, 'wiki.train.tokens')
     file_name = data_dir
-    file_name = os.path.join('./data/wikitext-2', 'wiki.train.tokens')
+    #file_name = os.path.join('./data/wikitext-2', 'wiki.train.tokens')
     with open(file_name, 'r', encoding='utf-8') as f:
         lines = f.readlines()
     # 大写字母转换为小写字母
@@ -157,11 +157,11 @@ class _WikiTextDataset(torch.utils.data.Dataset):
         return len(self.all_token_ids)
 
 #@save
-def load_data_wiki(batch_size, max_len):
+def load_data_wiki(datapath,batch_size, max_len):
     """加载WikiText-2数据集"""
     num_workers = d2l.get_dataloader_workers()
     data_dir = d2l.download_extract('wikitext-2', 'wikitext-2')
-    paragraphs = _read_wiki(data_dir)
+    paragraphs = _read_wiki(datapath)
     train_set = _WikiTextDataset(paragraphs, max_len)
     train_iter = torch.utils.data.DataLoader(train_set, batch_size,
                                         shuffle=True, num_workers=num_workers)
@@ -169,7 +169,7 @@ def load_data_wiki(batch_size, max_len):
 
 def main():
     batch_size, max_len = 512, 64
-    train_iter, vocab = load_data_wiki(batch_size, max_len)
+    train_iter, vocab = load_data_wiki('./data/wikidata/data.txt',batch_size, max_len)
     print(train_iter)
     for (tokens_X, segments_X, valid_lens_x, pred_positions_X, mlm_weights_X,
         mlm_Y, nsp_y) in train_iter:
@@ -178,7 +178,6 @@ def main():
             nsp_y.shape)
         break
     print(len(vocab))
-
 
 if __name__ == '__main__':
     main()
