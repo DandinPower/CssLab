@@ -1,17 +1,7 @@
 import torch
 from torch import nn
 from d2l import torch as d2l
-
-batch_size, max_len = 512, 64
-train_iter, vocab = d2l.load_data_wiki(batch_size, max_len)
-
-net = d2l.BERTModel(len(vocab), num_hiddens=128, norm_shape=[128],
-                    ffn_num_input=128, ffn_num_hiddens=256, num_heads=2,
-                    num_layers=2, dropout=0.2, key_size=128, query_size=128,
-                    value_size=128, hid_in_features=128, mlm_in_features=128,
-                    nsp_in_features=128)
-devices = d2l.try_all_gpus()
-loss = nn.CrossEntropyLoss()
+from d2lDataset import load_data_wiki
 
 #@save
 def _get_batch_loss_bert(net, loss, vocab_size, tokens_X,
@@ -77,8 +67,6 @@ def train_bert(train_iter, net, loss, vocab_size, devices, num_steps):
     print(f'{metric[2] / timer.sum():.1f} sentence pairs/sec on '
           f'{str(devices)}')
 
-train_bert(train_iter, net, loss, len(vocab), devices, 50)
-
 def get_bert_encoding(net, tokens_a, tokens_b=None):
     tokens, segments = d2l.get_tokens_and_segments(tokens_a, tokens_b)
     token_ids = torch.tensor(vocab[tokens], device=devices[0]).unsqueeze(0)
@@ -86,6 +74,19 @@ def get_bert_encoding(net, tokens_a, tokens_b=None):
     valid_len = torch.tensor(len(tokens), device=devices[0]).unsqueeze(0)
     encoded_X, _, _ = net(token_ids, segments, valid_len)
     return encoded_X
+
+batch_size, max_len = 512, 64
+train_iter, vocab = load_data_wiki('./data/wikidata/data.txt',batch_size, max_len)
+
+net = d2l.BERTModel(len(vocab), num_hiddens=128, norm_shape=[128],
+                    ffn_num_input=128, ffn_num_hiddens=256, num_heads=2,
+                    num_layers=2, dropout=0.2, key_size=128, query_size=128,
+                    value_size=128, hid_in_features=128, mlm_in_features=128,
+                    nsp_in_features=128)
+devices = d2l.try_all_gpus()
+loss = nn.CrossEntropyLoss()
+
+train_bert(train_iter, net, loss, len(vocab), devices, 50)
 
 tokens_a = ['a', 'crane', 'is', 'flying']
 encoded_text = get_bert_encoding(net, tokens_a)
@@ -101,3 +102,5 @@ encoded_pair = get_bert_encoding(net, tokens_a, tokens_b)
 encoded_pair_cls = encoded_pair[:, 0, :]
 encoded_pair_crane = encoded_pair[:, 2, :]
 encoded_pair.shape, encoded_pair_cls.shape, encoded_pair_crane[0][:3]
+print(encoded_pair_cls)
+print(encoded_pair_crane)
