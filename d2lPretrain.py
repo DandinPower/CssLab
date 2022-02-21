@@ -33,13 +33,14 @@ def train_bert(train_iter, net, loss, vocab_size, devices, num_steps):
     while step < num_steps and not num_steps_reached:
         for tokens_X, segments_X, valid_lens_x, pred_positions_X,\
             mlm_weights_X, mlm_Y, nsp_y in train_iter:
+            '''
             print(f'token_x: {tokens_X}')
             print(f'segments_x: {segments_X}')
             print(f'valid_lens_x: {valid_lens_x}')
             print(f'pred_positions_x: {pred_positions_X}')
             print(f'mlm_weights_x: {mlm_weights_X}')
             print(f'mlm_x: {mlm_Y}')
-            print(f'nsp_x: {nsp_y}')
+            print(f'nsp_x: {nsp_y}')'''
             tokens_X = tokens_X.to(devices[0])
             segments_X = segments_X.to(devices[0])
             valid_lens_x = valid_lens_x.to(devices[0])
@@ -86,7 +87,7 @@ net = d2l.BERTModel(len(vocab), num_hiddens=128, norm_shape=[128],
 devices = d2l.try_all_gpus()
 loss = nn.CrossEntropyLoss()
 
-train_bert(train_iter, net, loss, len(vocab), devices, 50)
+train_bert(train_iter, net, loss, len(vocab), devices, 500)
 
 tokens_a = ['a', 'crane', 'is', 'flying']
 encoded_text = get_bert_encoding(net, tokens_a)
