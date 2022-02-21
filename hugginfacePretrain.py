@@ -15,6 +15,7 @@ def main():
     print(f'Original Sentence: {colaSentence[0]}')
     print(f'Tokenized Sentence: {tokenizer.tokenize(colaSentence[0])}')
     print(f'Token IDs: {tokenizer.convert_tokens_to_ids(tokenizer.tokenize(colaSentence[0]))}')
+    model = d2l.BERTModel(30000, num_hiddens, norm_shape, ffn_num_input, ffn_num_hiddens, num_heads, num_layers, dropout)
 
 if __name__ == '__main__':
     main()
