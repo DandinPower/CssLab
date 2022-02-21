@@ -87,7 +87,8 @@ net = d2l.BERTModel(len(vocab), num_hiddens=128, norm_shape=[128],
 devices = d2l.try_all_gpus()
 loss = nn.CrossEntropyLoss()
 
-train_bert(train_iter, net, loss, len(vocab), devices, 500)
+for i in range(100):
+    train_bert(train_iter, net, loss, len(vocab), devices, 10)
 
 tokens_a = ['a', 'crane', 'is', 'flying']
 encoded_text = get_bert_encoding(net, tokens_a)
