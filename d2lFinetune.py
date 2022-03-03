@@ -101,7 +101,7 @@ def main():
         num_layers=2, dropout=0.1, max_len=512, devices=devices)
     # 如果出现显存不足错误，请减少“batch_size”。在原始的BERT模型中，max_len=512
     batch_size, max_len, num_workers = 32, 128, d2l.get_dataloader_workers()
-    #data_dir = d2l.download_extract('SNLI')
+    data_dir = d2l.download_extract('SNLI')
     data_dir = "../data/snli_1.0"
     train_set = SNLIBERTDataset(d2l.read_snli(data_dir, True), max_len, vocab)
     test_set = SNLIBERTDataset(d2l.read_snli(data_dir, False), max_len, vocab)
